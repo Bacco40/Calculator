@@ -17,7 +17,7 @@ const del=document.querySelector('#delete');
 
 function round(number){
     let rounded=Math.round((number + Number.EPSILON)*100)/100;
-    return rounded;
+    return rounded.toString();
 }
 
 function add(num1,num2){
@@ -72,6 +72,7 @@ function resetEverything(){
     state=0;
     state1=0;
     state2=0;
+    state3=0;
     calculate="";
     operations.textContent=calculate;
     result.textContent="";
@@ -160,12 +161,17 @@ dot.addEventListener('click',()=>{
     
 })
 del.addEventListener('click',()=>{
-    if(state3==1){
+    if(state3==1 && selection=="" && num2==""){
         resetEverything();
         state3=0;
-    }else if(state==0){
+    }else if(state==0 || selection=="" ){
         num1=num1.substring(0,num1.length-1);
         calculate=num1;
+        operations.textContent=calculate;
+    }else if(num2==""){
+        calculate=num1;
+        selection="";
+        state=0;
         operations.textContent=calculate;
     }else{
         num2=num2.substring(0,num2.length-1);
